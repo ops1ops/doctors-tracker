@@ -1,0 +1,22 @@
+name: Doctors tracker
+
+on:
+  schedule:
+    - cron: '*/90 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check_doctors_slots:
+    name: Check doctors slots
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - run: npm ci
+    - run: npm start
