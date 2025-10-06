@@ -18,7 +18,7 @@ const DOCTOR_ID_BY_SECOND_NAME = {
   Belous: 532,
 };
 
-const DOCTOR_IDS = Object.values(DOCTOR_ID_BY_SECOND_NAME);
+const DOCTOR_IDS = [DOCTOR_ID_BY_SECOND_NAME.Belous];
 const START_DATE = '05.10.2025';
 const END_DATE = '11.10.2025';
 
@@ -96,3 +96,4 @@ const main = async () => {
 };
 
 main();
+
