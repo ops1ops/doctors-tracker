@@ -18,7 +18,7 @@ const DOCTOR_ID_BY_SECOND_NAME = {
   Belous: 532,
 };
 
-const DOCTOR_IDS = [DOCTOR_ID_BY_SECOND_NAME.Belous];
+const DOCTOR_IDS = [DOCTOR_ID_BY_SECOND_NAME.Belous, DOCTOR_ID_BY_SECOND_NAME.Levashkevich];
 const START_DATE = '05.10.2025';
 const END_DATE = '11.10.2025';
 
@@ -55,18 +55,22 @@ const printSchedule = async (doctorId, dailySchedules) => {
     return;
   }
 
-  const message = `📅 Schedule for ${doctorName} (${doctorId}) (${START_DATE} - ${END_DATE}):`;
+  const scheduleMessage = `📅 Schedule for ${doctorName} (${doctorId}) (${START_DATE} - ${END_DATE}):`;
 
-  console.log(`\n${message}\n`);
+  console.log(`\n${scheduleMessage}\n`);
 
-  await sendMessage(message);
+  const slotsMessage = nonEmptyDays
+    .map((dayObj) => {
+      const [date, slots] = Object.entries(dayObj)[0];
+      const times = slots.map(({ startAt, endAt }) => `  ${startAt} - ${endAt}`).join('\n');
 
-  nonEmptyDays.forEach((dayObj) => {
-    const [date, slots] = Object.entries(dayObj)[0];
-    console.log(`🗓 ${date}`);
-    slots.forEach(({ startAt, endAt }) => console.log(`  ${startAt} - ${endAt}`));
-    console.log('');
-  });
+      return `${date}:\n${times}`;
+    })
+    .join('\n\n');
+
+  console.log(slotsMessage);
+
+  await sendMessage(`\n${scheduleMessage}\n` + slotsMessage);
 };
 
 const main = async () => {
@@ -80,6 +84,7 @@ const main = async () => {
 
     doctorsSchedule.forEach((doctorObj) => {
       const [doctorId, dailySchedules] = Object.entries(doctorObj)[0];
+
       printSchedule(doctorId, dailySchedules);
     });
 
