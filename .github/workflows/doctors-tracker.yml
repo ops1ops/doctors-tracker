@@ -2,7 +2,7 @@ name: Doctors tracker
 
 on:
   schedule:
-    - cron: '*/180 * * * *'
+    - cron: '*/210 * * * *'
   workflow_dispatch:
 
 jobs:
