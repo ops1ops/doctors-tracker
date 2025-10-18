@@ -19,7 +19,7 @@ const DOCTOR_ID_BY_SECOND_NAME = {
   Belous: 532,
 };
 
-const DOCTOR_IDS = [DOCTOR_ID_BY_SECOND_NAME.Belous, DOCTOR_ID_BY_SECOND_NAME.Levashkevich];
+const DOCTOR_IDS = [DOCTOR_ID_BY_SECOND_NAME.Belous];
 
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN);
 
