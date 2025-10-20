@@ -30,7 +30,7 @@ const getDoctorNameById = (doctorId) =>
 
 const fetchDoctorsSchedule = async (startDate, endDate) => {
   const doctorIdsParam = DOCTOR_IDS.join(',');
-  const params = `doctorIds=${doctorIdsParam}&startDate=${startDate}&endDate=${endDate}`;
+  const params = `doctorIds=${doctorIdsParam}&startDate=${startDate}&endDate=${endDate}&serviceId=71`;
 
   console.log(`Fetching doctors: ${params}`);
 
@@ -119,4 +119,5 @@ const main = async () => {
 };
 
 main();
+
 
